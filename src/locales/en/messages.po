@@ -1,0 +1,173 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-09-15 21:18+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:31
+#: src/components/Hero.tsx:36
+msgid "Backend Developer"
+msgstr "Backend Developer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:38
+msgid "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
+msgstr "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:45
+msgid "Frontend Developer"
+msgstr "Frontend Developer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:47
+msgid "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
+msgstr "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:54
+msgid "Full Stack Developer"
+msgstr "Full Stack Developer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:56
+msgid "Building complete web applications from database design to user interface implementation."
+msgstr "Building complete web applications from database design to user interface implementation."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:63
+msgid "UI/UX Designer"
+msgstr "UI/UX Designer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:65
+msgid "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
+msgstr "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:72
+msgid "DevOps Engineer"
+msgstr "DevOps Engineer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:74
+msgid "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
+msgstr "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
+
+#. js-lingui-explicit-id
+#: src/components/Testimonials.tsx:81
+msgid "What our clients are saying"
+msgstr "What our clients are saying"
+
+#. js-lingui-explicit-id
+#: src/components/Testimonials.tsx:84
+msgid "Our clients range from individual investors, to local, international as well as fortune 500 companies. Bla Bla Bla Blaaa"
+msgstr "Our clients range from individual investors, to local, international as well as fortune 500 companies. Bla Bla Bla Blaaa"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:17
+msgid "Email"
+msgstr "Email"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:24
+msgid "Subscribe"
+msgstr "Subscribe"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:33
+msgid "Contacts"
+msgstr "Contacts"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:73
+msgid "About"
+msgstr "About"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:79
+msgid "Our Strategy"
+msgstr "Our Strategy"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:85
+msgid "Our Advantages"
+msgstr "Our Advantages"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:91
+msgid "Social Responsibility"
+msgstr "Social Responsibility"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:97
+msgid "Our Services"
+msgstr "Our Services"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:102
+msgid "© 2024 . All rights reserved."
+msgstr "© 2024 . All rights reserved."
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:375
+#: src/components/Header.tsx:771
+#: src/components/OurTeam.tsx:175
+msgid "Our Team"
+msgstr "Our Team"
+
+#. js-lingui-explicit-id
+#: src/components/OurTeam.tsx:178
+msgid "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+msgstr "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:169
+#: src/components/Hero.tsx:190
+msgid "Read More"
+msgstr "Read More"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:201
+#: src/components/Header.tsx:609
+msgid "About Us"
+msgstr "About Us"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:211
+#: src/components/Header.tsx:619
+msgid "Services"
+msgstr "Services"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:381
+#: src/components/Header.tsx:777
+msgid "Blogs"
+msgstr "Blogs"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:387
+#: src/components/Header.tsx:783
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:411
+msgid "Search services..."
+msgstr "Search services..."
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:484
+#: src/components/Header.tsx:791
+msgid "Book Appointment"
+msgstr "Book Appointment"

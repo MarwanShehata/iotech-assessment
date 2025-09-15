@@ -1,0 +1,302 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-09-15 21:18+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ar\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:36
+msgid "Backend Developer"
+msgstr "مطور خلفي"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:38
+msgid "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
+msgstr "تصميم وصيانة تطبيقات الخادم باستخدام Node.js وExpress وواجهات برمجة التطبيقات الآمنة."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:45
+msgid "Frontend Developer"
+msgstr "مطور واجهات أمامية"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:47
+msgid "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
+msgstr "إنشاء واجهات مستخدم تفاعلية ومتجاوبة باستخدام React وNext.js وأطر CSS الحديثة."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:54
+msgid "Full Stack Developer"
+msgstr "مطور متكامل"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:56
+msgid "Building complete web applications from database design to user interface implementation."
+msgstr "بناء تطبيقات ويب كاملة من تصميم قاعدة البيانات إلى تنفيذ واجهة المستخدم."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:63
+msgid "UI/UX Designer"
+msgstr "مصمم واجهات وتجربة المستخدم"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:65
+msgid "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
+msgstr "صياغة تجارب مستخدم جميلة وبديهية من خلال البحث والنماذج الأولية والتصاميم التفاعلية."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:72
+msgid "DevOps Engineer"
+msgstr "مهندس DevOps"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:74
+msgid "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
+msgstr "تبسيط سير العمل التطويري باستخدام أنابيب CI/CD والبنية التحتية السحابية والأتمتة."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/Testimonials.tsx:81
+msgid "What our clients are saying"
+msgstr "ماذا يقول عملاؤنا"
+
+#. js-lingui-explicit-id
+#: src/components/Testimonials.tsx:84
+msgid "Our clients range from individual investors, to local, international as well as fortune 500 companies. Bla Bla Bla Blaaa"
+msgstr "يتراوح عملاؤنا من المستثمرين الأفراد إلى الشركات المحلية والدولية وكذلك شركات فورتشن 500. بلا بلا بلا بلا"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:17
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:24
+msgid "Subscribe"
+msgstr "اشترك"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:33
+msgid "Contacts"
+msgstr "جهات الاتصال"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:73
+msgid "About"
+msgstr "حول"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:79
+msgid "Our Strategy"
+msgstr "استراتيجيتنا"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:85
+msgid "Our Advantages"
+msgstr "مميزاتنا"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:91
+msgid "Social Responsibility"
+msgstr "المسؤولية الاجتماعية"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:97
+msgid "Our Services"
+msgstr "خدماتنا"
+
+#. js-lingui-explicit-id
+#: src/components/Footer.tsx:102
+msgid "© 2024 . All rights reserved."
+msgstr "© 2024 . جميع الحقوق محفوظة."
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:375
+#: src/components/Header.tsx:771
+#: src/components/OurTeam.tsx:175
+msgid "Our Team"
+msgstr "فريقنا"
+
+#. js-lingui-explicit-id
+#: src/components/OurTeam.tsx:178
+msgid "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+msgstr "لوريم إيبسوم هو ببساطة نص شكلي لصناعة الطباعة والتنضيد. لقد كان لوريم إيبسوم النص الشكلي القياسي في الصناعة منذ القرن الخامس عشر"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:169
+#: src/components/Hero.tsx:190
+msgid "Read More"
+msgstr "اقرأ المزيد"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:201
+#: src/components/Header.tsx:609
+msgid "About Us"
+msgstr "معلومات عنا"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:211
+#: src/components/Header.tsx:619
+msgid "Services"
+msgstr "خدمات"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:381
+#: src/components/Header.tsx:777
+msgid "Blogs"
+msgstr "مدونات"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:387
+#: src/components/Header.tsx:783
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:411
+msgid "Search services..."
+msgstr "البحث عن الخدمات..."
+
+#. js-lingui-explicit-id
+#: src/components/Header.tsx:484
+#: src/components/Header.tsx:791
+msgid "Book Appointment"
+msgstr "احجز موعدا"
+
+#~ msgid "Ahmed Hassan"
+#~ msgstr "أحمد حسان"
+
+# Team members
+#~ msgid "Ahmed Taha"
+#~ msgstr "أحمد طه"
+
+#~ msgid "AI Safar and Partners provided exceptional service throughout our investment process. Their expertise in international markets and attention to detail made all the difference. I highly recommend their professional services to any serious investor."
+#~ msgstr "قدمت الصفار والشركاء خدمة استثنائية طوال عملية الاستثمار. خبرتهم في الأسواق الدولية واهتمامهم بالتفاصيل أحدث كل الفارق. أوصي بشدة بخدماتهم المهنية لأي مستثمر جاد."
+
+# Hero carousel slides
+#~ msgid "Backend Developer"
+#~ msgstr "مطور خلفي"
+
+#~ msgid "Building complete web applications from database design to user interface implementation."
+#~ msgstr "بناء تطبيقات ويب كاملة من تصميم قاعدة البيانات إلى تنفيذ واجهة المستخدم."
+
+#~ msgid "CEO"
+#~ msgstr "الرئيس التنفيذي"
+
+#~ msgid "CFO"
+#~ msgstr "المدير المالي"
+
+#~ msgid "Company"
+#~ msgstr "شركة"
+
+#~ msgid "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
+#~ msgstr "صياغة تجارب مستخدم جميلة وبديهية من خلال البحث والنماذج الأولية والتصاميم التفاعلية."
+
+#~ msgid "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
+#~ msgstr "إنشاء واجهات مستخدم تفاعلية ومتجاوبة باستخدام React وNext.js وأطر CSS الحديثة."
+
+#~ msgid "David Rodriguez"
+#~ msgstr "ديفيد رودريغيز"
+
+#~ msgid "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
+#~ msgstr "تصميم وصيانة تطبيقات الخادم باستخدام Node.js وExpress وواجهات برمجة التطبيقات الآمنة."
+
+#~ msgid "DevOps Engineer"
+#~ msgstr "مهندس DevOps"
+
+#~ msgid "Emily Johnson"
+#~ msgstr "إيميلي جونسون"
+
+#~ msgid "Farida Adel"
+#~ msgstr "فريدة عادل"
+
+#~ msgid "Financial Analyst"
+#~ msgstr "محلل مالي"
+
+#~ msgid "Fortune Tech Solutions"
+#~ msgstr "حلول فورتشن التقنية"
+
+#~ msgid "From individual investments to large-scale corporate solutions, AI Safar and Partners has proven time and again why they're the best in the business. Their professionalism and results speak for themselves."
+#~ msgstr "من الاستثمارات الفردية إلى حلول الشركات واسعة النطاق، أثبتت الصفار والشركاء مراراً وتكراراً لماذا هم الأفضل في هذا المجال. مهنيتهم ونتائجهم تتحدث عن نفسها."
+
+#~ msgid "Frontend Developer"
+#~ msgstr "مطور واجهات أمامية"
+
+#~ msgid "Full Stack Developer"
+#~ msgstr "مطور متكامل"
+
+#~ msgid "Global Ventures Ltd"
+#~ msgstr "شركة المشاريع العالمية المحدودة"
+
+#~ msgid "HR Manager"
+#~ msgstr "مدير الموارد البشرية"
+
+#~ msgid "International Holdings"
+#~ msgstr "الاستثمارات الدولية"
+
+#~ msgid "Investment Director"
+#~ msgstr "مديرة استثمارات"
+
+#~ msgid "Karim Saad"
+#~ msgstr "كريم سعد"
+
+#~ msgid "Managing Director"
+#~ msgstr "العضو المنتدب"
+
+#~ msgid "Marketing Specialist"
+#~ msgstr "أخصائي تسويق"
+
+#~ msgid "Mohamed Khaled"
+#~ msgstr "محمد خالد"
+
+# Testimonials
+#~ msgid "Mohammed Saif"
+#~ msgstr "محمد سيف"
+
+#~ msgid "Nada Hassan"
+#~ msgstr "ندى حسان"
+
+#~ msgid "Portfolio Manager"
+#~ msgstr "مديرة محفظة استثمارية"
+
+#~ msgid "Sales Director"
+#~ msgstr "مدير مبيعات"
+
+#~ msgid "Sarah Chen"
+#~ msgstr "سارة تشين"
+
+#~ msgid "Senior Project Manager"
+#~ msgstr "مدير مشاريع أول"
+
+#~ msgid "Software Engineer"
+#~ msgstr "مهندس برمجيات"
+
+#~ msgid "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
+#~ msgstr "تبسيط سير العمل التطويري باستخدام أنابيب CI/CD والبنية التحتية السحابية والأتمتة."
+
+#~ msgid "Sunrise Capital"
+#~ msgstr "رأس المال الشروق"
+
+#~ msgid "The team at AI Safar and Partners combines deep market knowledge with genuine care for their clients. They've consistently delivered results that exceed our expectations and have become our trusted financial partners."
+#~ msgstr "يجمع فريق الصفار والشركاء بين المعرفة العميقة بالسوق والاهتمام الحقيقي بعملائهم. لقد قدموا باستمرار نتائج تفوق توقعاتنا وأصبحوا شركاءنا الماليين الموثوقين."
+
+#~ msgid "UI/UX Designer"
+#~ msgstr "مصمم واجهات وتجربة المستخدم"
+
+#~ msgid "With the help of the hospitable staff of AI Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered."
+#~ msgstr "بمساعدة الموظفين المضيافين في الصفار والشركاء تمكنت من إنجاز عملي دون أي متاعب. المساعدة التي تلقيتها ساعدتني كثيراً في التغلب على المشاكل التي واجهتها. كنت على اطلاع دائم بقضيتي واستفساراتي لم تبق دون إجابة."
+
+#~ msgid "Working with AI Safar and Partners has been a game-changer for our company. Their strategic insights and personalized approach helped us navigate complex financial decisions with confidence. Outstanding results every time."
+#~ msgstr "العمل مع الصفار والشركاء كان بمثابة نقطة تحول لشركتنا. رؤاهم الاستراتيجية ونهجهم الشخصي ساعدونا في التعامل مع القرارات المالية المعقدة بثقة. نتائج مميزة في كل مرة."
+
+#~ msgid "Yasmine Abdelaziz"
+#~ msgstr "ياسمين عبدالعزيز"

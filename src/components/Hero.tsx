@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
+import { Trans, useLingui } from "@lingui/react";
+import { useRouter } from 'next/navigation'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -19,51 +21,55 @@ interface SlideData {
 }
 
 const Hero: React.FC = () => {
+  const { i18n } = useLingui();
+  const router = useRouter()
   const swiperRef = useRef<SwiperType | null>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const isRTL = i18n.locale === 'ar'
 
+  
   const slides: SlideData[] = [
     {
       id: 1,
-      title: 'Backend Developer',
+      title: i18n._('Backend Developer'),
       description:
-        'Designing and maintaining server-side applications with Node.js, Express, and secure APIs.',
+        i18n._('Designing and maintaining server-side applications with Node.js, Express, and secure APIs.'),
       readMoreLink: '/services/backend-development',
       image:
         'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 2,
-      title: 'Frontend Developer',
+      title: i18n._('Frontend Developer'),
       description:
-        'Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks.',
+        i18n._('Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks.'),
       readMoreLink: '/services/frontend-development',
       image:
         'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 3,
-      title: 'Full Stack Developer',
+      title: i18n._('Full Stack Developer'),
       description:
-        'Building complete web applications from database design to user interface implementation.',
+        i18n._('Building complete web applications from database design to user interface implementation.'),
       readMoreLink: '/services/fullstack-development',
       image:
         'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 4,
-      title: 'UI/UX Designer',
+      title: i18n._('UI/UX Designer'),
       description:
-        'Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping.',
+        i18n._('Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping.'),
       readMoreLink: '/services/ui-ux-design',
       image:
         'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 5,
-      title: 'DevOps Engineer',
+      title: i18n._('DevOps Engineer'),
       description:
-        'Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation.',
+        i18n._('Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation.'),
       readMoreLink: '/services/devops',
       image:
         'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
@@ -95,6 +101,7 @@ const Hero: React.FC = () => {
         <div className='container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
           <div
             className='hero-swiper-container'
+            dir={isRTL ? 'rtl' : 'ltr'}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -112,6 +119,7 @@ const Hero: React.FC = () => {
                 nextEl: '.hero-swiper-button-next',
                 prevEl: '.hero-swiper-button-prev',
               }}
+              key={isRTL ? 'rtl' : 'ltr'}
               pagination={{
                 el: '.hero-swiper-pagination',
                 clickable: true,
@@ -156,7 +164,7 @@ const Hero: React.FC = () => {
                             href={slide.readMoreLink}
                             className='inline-block rounded-md bg-white px-6 py-3 font-semibold text-amber-600 transition-all duration-300 hover:bg-amber-600 hover:text-white focus:bg-amber-600 focus:text-white focus-within:bg-amber-600 focus-within:text-white hover:shadow-lg sm:px-8'
                           >
-                            Read More
+                            <Trans id="Read More" />
                           </a>
                         </div>
                       </div>
@@ -177,7 +185,7 @@ const Hero: React.FC = () => {
                             href={slide.readMoreLink}
                             className='inline-block rounded-md bg-white px-8 py-3 font-semibold text-amber-600 transition-all duration-300 hover:bg-amber-600 hover:text-white focus:bg-amber-600 focus:text-white focus-within:bg-amber-600 focus-within:text-white hover:shadow-lg'
                           >
-                            Read More
+                            <Trans id="Read More" />
                           </a>
                         </div>
                       </div>
@@ -249,6 +257,37 @@ const Hero: React.FC = () => {
         .hero-swiper {
           width: 100%;
           height: 100%;
+        }
+        
+        .hero-swiper-container[dir="rtl"] {
+          direction: rtl;
+        }
+        
+        .hero-swiper-container[dir="rtl"] .swiper {
+          direction: rtl;
+        }
+        
+        /* RTL Navigation button positioning */
+        .hero-swiper-container[dir="rtl"] .hero-swiper-button-prev {
+          right: 2px;
+          left: auto;
+        }
+        
+        .hero-swiper-container[dir="rtl"] .hero-swiper-button-next {
+          left: 2px;
+          right: auto;
+        }
+        
+        @media (min-width: 640px) {
+          .hero-swiper-container[dir="rtl"] .hero-swiper-button-prev {
+            right: 1rem;
+            left: auto;
+          }
+          
+          .hero-swiper-container[dir="rtl"] .hero-swiper-button-next {
+            left: 1rem;
+            right: auto;
+          }
         }
 
         .hero-pagination-bullet {

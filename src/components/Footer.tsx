@@ -1,7 +1,10 @@
+'use client'
 import React from 'react'
 import { Twitter, Facebook } from 'lucide-react'
+import { Trans, useLingui } from "@lingui/react";
 
 const Footer: React.FC = () => {
+  const { i18n } = useLingui();
 	return (
 		<footer className='bg-amber-900 text-white'>
 			{/* Top Section */}
@@ -11,14 +14,14 @@ const Footer: React.FC = () => {
 					<div className='flex items-center space-x-2'>
 						<input
 							type='email'
-							placeholder='Email'
+							placeholder={i18n._('Email')}
 							className='rounded bg-white px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-700'
 						/>
 						<button
 							type='button'
 							className='rounded bg-amber-800 px-6 py-2 text-white transition-colors duration-200 hover:bg-amber-700'
 						>
-							Subscribe
+							<Trans id="Subscribe" />
 						</button>
 					</div>
 
@@ -27,7 +30,7 @@ const Footer: React.FC = () => {
 						href='/contacts'
 						className='transition-colors duration-200 hover:text-amber-200'
 					>
-						Contacts
+						<Trans id="Contacts" />
 					</a>
 
 					{/* Social Media Icons */}
@@ -67,36 +70,36 @@ const Footer: React.FC = () => {
 						href='/about'
 						className='transition-colors duration-200 hover:text-amber-200'
 					>
-						About
+						<Trans id="About" />
 					</a>
 					<a
 						href='/strategy'
 						className='transition-colors duration-200 hover:text-amber-200'
 					>
-						Our Strategy
+						<Trans id="Our Strategy" />
 					</a>
 					<a
 						href='/advantages'
 						className='transition-colors duration-200 hover:text-amber-200'
 					>
-						Our Advantages
+						<Trans id="Our Advantages" />
 					</a>
 					<a
 						href='/social-responsibility'
 						className='transition-colors duration-200 hover:text-amber-200'
 					>
-						Social Responsibility
+						<Trans id="Social Responsibility" />
 					</a>
 					<a
 						href='/services'
 						className='transition-colors duration-200 hover:text-amber-200'
 					>
-						Our Services
+						<Trans id="Our Services" />
 					</a>
 				</nav>
 
 				{/* Copyright */}
-				<p className='text-sm'>© 2024 . All rights reserved.</p>
+				<p className='text-sm'><Trans id="© 2024 . All rights reserved." /></p>
 			</div>
 		</footer>
 	)

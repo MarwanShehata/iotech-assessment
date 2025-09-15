@@ -9,6 +9,7 @@ import {
 	MessageCircle,
 	Mail,
 } from 'lucide-react'
+import { Trans, useLingui } from "@lingui/react";
 
 // Import Swiper styles
 import 'swiper/css'
@@ -33,11 +34,12 @@ interface OurTeamProps {
 	className?: string
 }
 
-const defaultTeamMembers: TeamMember[] = [
+// Define base team data structure without translations
+const baseTeamMembers = [
 	{
 		id: 1,
-		name: 'Ahmed Taha',
-		position: 'Senior Project Manager',
+		nameKey: 'Ahmed Taha',
+		positionKey: 'Senior Project Manager',
 		image: 'https://ph.loremipsums.org/300/CCCCCC/333333/webp',
 		phone: '#',
 		message: '#',
@@ -45,8 +47,8 @@ const defaultTeamMembers: TeamMember[] = [
 	},
 	{
 		id: 2,
-		name: 'Yasmine Abdelaziz',
-		position: 'Marketing Specialist',
+		nameKey: 'Yasmine Abdelaziz',
+		positionKey: 'Marketing Specialist',
 		image: 'https://ph.loremipsums.org/300/77767B/333333/webp',
 		phone: '#',
 		message: '#',
@@ -54,8 +56,8 @@ const defaultTeamMembers: TeamMember[] = [
 	},
 	{
 		id: 3,
-		name: 'Mohamed Khaled',
-		position: 'Software Engineer',
+		nameKey: 'Mohamed Khaled',
+		positionKey: 'Software Engineer',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -63,8 +65,8 @@ const defaultTeamMembers: TeamMember[] = [
 	},
 	{
 		id: 4,
-		name: 'Nada Hassan',
-		position: 'Financial Analyst',
+		nameKey: 'Nada Hassan',
+		positionKey: 'Financial Analyst',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -72,8 +74,8 @@ const defaultTeamMembers: TeamMember[] = [
 	},
 	{
 		id: 5,
-		name: 'Karim Saad',
-		position: 'Sales Director',
+		nameKey: 'Karim Saad',
+		positionKey: 'Sales Director',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -81,8 +83,8 @@ const defaultTeamMembers: TeamMember[] = [
 	},
 	{
 		id: 6,
-		name: 'Farida Adel',
-		position: 'HR Manager',
+		nameKey: 'Farida Adel',
+		positionKey: 'HR Manager',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -91,6 +93,8 @@ const defaultTeamMembers: TeamMember[] = [
 ]
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
+  const { i18n } = useLingui();
+  const isRTL = i18n.locale === 'ar';
 	const handleContactClick = (
 		e: React.MouseEvent<HTMLAnchorElement>,
 		url: string,
@@ -150,26 +154,33 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
 }
 
 const OurTeam: React.FC<OurTeamProps> = ({
-	teamMembers = defaultTeamMembers,
+	teamMembers,
 	className = '',
 }) => {
+	const { i18n } = useLingui();
+	const isRTL = i18n.locale === 'ar';
+
+	// Create translated team member data
+	const translatedTeamMembers = teamMembers || baseTeamMembers.map(member => ({
+		...member,
+		name: i18n._(member.nameKey),
+		position: i18n._(member.positionKey)
+	}));
 	return (
 		<section className={`bg-gray-50 py-16 ${className}`}>
 			<div className='container mx-auto max-w-7xl px-4'>
 				{/* Header */}
 				<div className='mb-12 text-center'>
 					<h2 className='mb-4 font-serif text-3xl text-amber-900 md:text-4xl lg:text-5xl'>
-						Our Team
+						<Trans id="Our Team" />
 					</h2>
 					<p className='mx-auto max-w-2xl text-gray-600 text-sm leading-relaxed md:text-base'>
-						Lorem Ipsum is simply dummy text of the printing and typesetting
-						industry. Lorem Ipsum has been the industry's standard dummy text
-						ever since the 1500s
+						<Trans id="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" />
 					</p>
 				</div>
 
 				{/* Team Carousel */}
-				<div className='relative'>
+				<div className='relative' dir={isRTL ? 'rtl' : 'ltr'}>
 					<Swiper
 						modules={[Navigation, Pagination]}
 						spaceBetween={24}
@@ -178,6 +189,7 @@ const OurTeam: React.FC<OurTeamProps> = ({
 							prevEl: '.team-prev, .team-prev-mobile',
 							nextEl: '.team-next, .team-next-mobile',
 						}}
+						key={isRTL ? 'rtl' : 'ltr'}
 						pagination={{
 							clickable: true,
 							el: '.team-pagination',
@@ -200,7 +212,7 @@ const OurTeam: React.FC<OurTeamProps> = ({
 						// role='region'
 						aria-label='Team members carousel'
 					>
-						{teamMembers.map((member: TeamMember) => (
+						{translatedTeamMembers.map((member: TeamMember) => (
 							<SwiperSlide key={member.id}>
 								<TeamMemberCard member={member} />
 							</SwiperSlide>
