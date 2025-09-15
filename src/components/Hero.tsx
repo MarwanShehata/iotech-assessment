@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
 
 			{/* Content Container */}
 			<div className='relative z-10 flex h-full w-full items-center justify-center'>
-				<div className='container mx-auto max-w-6xl px-4'>
+				<div className='container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
 					<div
 						className='hero-swiper-container'
 						onMouseEnter={() => setIsHovered(true)}
@@ -120,14 +120,50 @@ const Hero: React.FC = () => {
 						>
 							{slides.map((slide) => (
 								<SwiperSlide key={slide.id}>
-									<div className='flex min-h-[400px] items-center justify-center'>
-										<div className='grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12'>
-											{/* Text Content - Left Side */}
-											<div className='flex flex-col justify-center text-white'>
-												<h3 className='mb-6 text-left font-bold text-4xl md:text-5xl lg:text-6xl'>
+									<div className='flex min-h-[400px] items-center justify-center py-8 sm:py-12'>
+										{/* Mobile and Tablet Layout (Stacked) */}
+										<div className='flex flex-col items-center space-y-6 text-center lg:hidden'>
+											{/* Image First on Mobile/Tablet */}
+											<div className='flex items-center justify-center'>
+												<div className='relative overflow-hidden rounded-lg shadow-2xl'>
+													<img
+														src={slide.image}
+														alt={slide.title}
+														className='h-48 w-64 object-cover sm:h-56 sm:w-72 md:h-64 md:w-80'
+														width={320}
+														height={256}
+													/>
+													<div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
+												</div>
+											</div>
+
+											{/* Text Content Below Image */}
+											<div className='flex max-w-lg flex-col justify-center text-white'>
+												<h3 className='mb-4 font-bold text-3xl sm:text-4xl md:text-5xl'>
 													{slide.title}
 												</h3>
-												<p className='mb-8 text-left text-lg leading-relaxed md:text-xl'>
+												<p className='mb-6 text-base leading-relaxed sm:text-lg md:text-xl'>
+													{slide.description}
+												</p>
+												<div>
+													<a
+														href={slide.readMoreLink}
+														className='inline-block rounded-md bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg sm:px-8'
+													>
+														Read More
+													</a>
+												</div>
+											</div>
+										</div>
+
+										{/* Desktop Layout (Side by Side) */}
+										<div className='hidden grid-cols-1 gap-8 lg:grid lg:grid-cols-2 lg:gap-12'>
+											{/* Text Content - Left Side */}
+											<div className='flex flex-col justify-center text-white'>
+												<h3 className='mb-6 text-left font-bold text-4xl lg:text-5xl xl:text-6xl'>
+													{slide.title}
+												</h3>
+												<p className='mb-8 text-left text-lg leading-relaxed lg:text-xl'>
 													{slide.description}
 												</p>
 												<div className='text-left'>
@@ -146,9 +182,9 @@ const Hero: React.FC = () => {
 													<img
 														src={slide.image}
 														alt={slide.title}
-														className='h-64 w-80 object-cover md:h-80 md:w-96 lg:h-96 lg:w-[420px]'
-														width={320}
-														height={256}
+														className='h-80 w-96 object-cover lg:h-96 lg:w-[420px]'
+														width={420}
+														height={384}
 													/>
 													<div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
 												</div>
@@ -160,50 +196,12 @@ const Hero: React.FC = () => {
 						</Swiper>
 
 						{/* Custom Navigation Buttons */}
-						<button
-							type='button'
-							className='hero-swiper-button-prev -translate-y-1/2 absolute top-1/2 left-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white bg-opacity-20 text-white transition-all duration-300 hover:bg-opacity-30 md:left-8 lg:h-16 lg:w-16'
-						>
-							<svg
-								className='h-6 w-6 lg:h-8 lg:w-8'
-								fill='none'
-								stroke='currentColor'
-								viewBox='0 0 24 24'
-								xmlns='http://www.w3.org/2000/svg'
-								role='graphics-symbol img'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2.5}
-									d='M11 17l-5-5 5-5M18 17l-5-5 5-5'
-								/>
-							</svg>
-						</button>
+						<div className='swiper-button-prev hero-swiper-button-prev -translate-y-1/2 absolute top-1/2 left-2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-opacity-20 text-white transition-all duration-300 hover:bg-opacity-30 sm:left-4 sm:h-12 sm:w-12 md:left-6 lg:left-8 lg:h-16 lg:w-16' />
 
-						<button
-							type='button'
-							className='hero-swiper-button-next -translate-y-1/2 absolute top-1/2 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white bg-opacity-20 text-white transition-all duration-300 hover:bg-opacity-30 md:right-8 lg:h-16 lg:w-16'
-						>
-							<svg
-								className='h-6 w-6 lg:h-8 lg:w-8'
-								fill='none'
-								stroke='currentColor'
-								viewBox='0 0 24 24'
-								xmlns='http://www.w3.org/2000/svg'
-								role='graphics-symbol img'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2.5}
-									d='M13 7l5 5-5 5M6 7l5 5-5 5'
-								/>
-							</svg>
-						</button>
+						<div className='swiper-button-next hero-swiper-button-next -translate-y-1/2 absolute top-1/2 right-2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-opacity-20 text-white transition-all duration-300 hover:bg-opacity-30 sm:right-4 sm:h-12 sm:w-12 md:right-6 lg:right-8 lg:h-16 lg:w-16' />
 
-						{/* Custom Vertical Pagination top-1/2???*/}
-						<div className='hero-swiper-pagination -translate-y-1/2 absolute left-4 z-20 mt-16 flex flex-col space-y-3 md:left-8' />
+						{/* Custom Vertical Pagination */}
+						<div className='hero-swiper-pagination -translate-y-1/2 absolute top-3/4 left-2 z-20 flex flex-col gap-1 space-y-2 sm:left-4 sm:space-y-3 md:left-6 lg:left-8' />
 					</div>
 				</div>
 			</div>
@@ -217,8 +215,8 @@ const Hero: React.FC = () => {
 
         .hero-pagination-bullet {
           display: block;
-          width: 12px;
-          height: 12px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background: rgba(255, 255, 255, 0.5);
           cursor: pointer;
@@ -245,10 +243,17 @@ const Hero: React.FC = () => {
           display: none;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 640px) {
           .hero-pagination-bullet {
             width: 10px;
             height: 10px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .hero-pagination-bullet {
+            width: 12px;
+            height: 12px;
           }
         }
       `}</style>

@@ -39,6 +39,9 @@
       "semicolons": "asNeeded"
     }
   },
+  "css": { "formatter": {
+    
+  } },
   "linter": {
     "enabled": true,
     "rules": {
