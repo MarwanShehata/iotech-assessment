@@ -17,46 +17,46 @@ interface Testimonial {
 	image: string
 }
 
-// Base testimonials data structure without translations
+// Base testimonials data structure
 const baseTestimonials = [
 	{
 		id: 1,
-		nameKey: 'Mohammed Saif',
-		positionKey: 'CEO',
-		companyKey: 'Company',
-		quoteKey: 'With the help of the hospitable staff of AI Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered.',
+		name: 'Mohammed Saif',
+		position: 'CEO',
+		company: 'Company',
+		quote: 'With the help of the hospitable staff of AI Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered.',
 		image: 'https://ph.loremipsums.org/300x400/CCCCCC/333333/webp',
 	},
 	{
 		id: 2,
-		nameKey: 'Sarah Chen',
-		positionKey: 'Investment Director',
-		companyKey: 'Global Ventures Ltd',
-		quoteKey: 'AI Safar and Partners provided exceptional service throughout our investment process. Their expertise in international markets and attention to detail made all the difference. I highly recommend their professional services to any serious investor.',
+		name: 'Sarah Chen',
+		position: 'Investment Director',
+		company: 'Global Ventures Ltd',
+		quote: 'AI Safar and Partners provided exceptional service throughout our investment process. Their expertise in international markets and attention to detail made all the difference. I highly recommend their professional services to any serious investor.',
 		image: 'https://ph.loremipsums.org/300x400/77767B/333333/webp',
 	},
 	{
 		id: 3,
-		nameKey: 'David Rodriguez',
-		positionKey: 'CFO',
-		companyKey: 'Fortune Tech Solutions',
-		quoteKey: 'Working with AI Safar and Partners has been a game-changer for our company. Their strategic insights and personalized approach helped us navigate complex financial decisions with confidence. Outstanding results every time.',
+		name: 'David Rodriguez',
+		position: 'CFO',
+		company: 'Fortune Tech Solutions',
+		quote: 'Working with AI Safar and Partners has been a game-changer for our company. Their strategic insights and personalized approach helped us navigate complex financial decisions with confidence. Outstanding results every time.',
 		image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
 	},
 	{
 		id: 4,
-		nameKey: 'Emily Johnson',
-		positionKey: 'Portfolio Manager',
-		companyKey: 'Sunrise Capital',
-		quoteKey: "The team at AI Safar and Partners combines deep market knowledge with genuine care for their clients. They've consistently delivered results that exceed our expectations and have become our trusted financial partners.",
+		name: 'Emily Johnson',
+		position: 'Portfolio Manager',
+		company: 'Sunrise Capital',
+		quote: "The team at AI Safar and Partners combines deep market knowledge with genuine care for their clients. They've consistently delivered results that exceed our expectations and have become our trusted financial partners.",
 		image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
 	},
 	{
 		id: 5,
-		nameKey: 'Ahmed Hassan',
-		positionKey: 'Managing Director',
-		companyKey: 'International Holdings',
-		quoteKey: "From individual investments to large-scale corporate solutions, AI Safar and Partners has proven time and again why they're the best in the business. Their professionalism and results speak for themselves.",
+		name: 'Ahmed Hassan',
+		position: 'Managing Director',
+		company: 'International Holdings',
+		quote: "From individual investments to large-scale corporate solutions, AI Safar and Partners has proven time and again why they're the best in the business. Their professionalism and results speak for themselves.",
 		image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
 	},
 ]
@@ -64,15 +64,6 @@ const baseTestimonials = [
 const TestimonialSlider: React.FC = () => {
   const { i18n } = useLingui();
   const isRTL = i18n.locale === 'ar';
-  
-  // Create translated testimonials data
-  const testimonials = baseTestimonials.map(testimonial => ({
-    ...testimonial,
-    name: i18n._(testimonial.nameKey),
-    position: i18n._(testimonial.positionKey),
-    company: i18n._(testimonial.companyKey),
-    quote: i18n._(testimonial.quoteKey)
-  }));
 	return (
 		<div className='min-h-fit w-full bg-gradient-to-br from-amber-900 to-amber-800 px-8 py-16'>
 			{/* Header Section */}
@@ -108,7 +99,7 @@ const TestimonialSlider: React.FC = () => {
 					loop={true}
 					className='testimonial-swiper'
 				>
-					{testimonials.map((testimonial) => (
+					{baseTestimonials.map((testimonial) => (
 						<SwiperSlide key={testimonial.id}>
 							<div className='flex flex-col items-center gap-8 py-8 lg:flex-row lg:items-start lg:gap-12'>
 								{/* Client Image */}
@@ -116,7 +107,7 @@ const TestimonialSlider: React.FC = () => {
 									<div className='h-80 w-64 overflow-hidden rounded-lg shadow-xl'>
 										<img
 											src={testimonial.image}
-											alt={`${testimonial.name} - ${testimonial.position} at ${testimonial.company}`}
+											alt={`${i18n._(testimonial.name)} - ${i18n._(testimonial.position)} at ${i18n._(testimonial.company)}`}
 											className='h-full w-full object-cover'
 											loading='lazy'
 										/>
@@ -126,15 +117,15 @@ const TestimonialSlider: React.FC = () => {
 								{/* Testimonial Content */}
 								<div className='flex-1 text-center lg:text-left'>
 									<blockquote className='mb-8 font-light text-white text-xl leading-relaxed md:text-2xl'>
-										"{testimonial.quote}"
+										"{i18n._(testimonial.quote)}"
 									</blockquote>
 
 									<div className='text-amber-100'>
 										<h3 className='mb-2 font-bold text-2xl md:text-3xl'>
-											{testimonial.name}
+											{i18n._(testimonial.name)}
 										</h3>
 										<p className='text-lg md:text-xl'>
-											{testimonial.position}/{testimonial.company}
+											{i18n._(testimonial.position)}/{i18n._(testimonial.company)}
 										</p>
 									</div>
 								</div>

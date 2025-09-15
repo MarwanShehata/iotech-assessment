@@ -34,12 +34,12 @@ interface OurTeamProps {
 	className?: string
 }
 
-// Define base team data structure without translations
+// Define base team data structure
 const baseTeamMembers = [
 	{
 		id: 1,
-		nameKey: 'Ahmed Taha',
-		positionKey: 'Senior Project Manager',
+		name: 'Ahmed Taha',
+		position: 'Senior Project Manager',
 		image: 'https://ph.loremipsums.org/300/CCCCCC/333333/webp',
 		phone: '#',
 		message: '#',
@@ -47,8 +47,8 @@ const baseTeamMembers = [
 	},
 	{
 		id: 2,
-		nameKey: 'Yasmine Abdelaziz',
-		positionKey: 'Marketing Specialist',
+		name: 'Yasmine Abdelaziz',
+		position: 'Marketing Specialist',
 		image: 'https://ph.loremipsums.org/300/77767B/333333/webp',
 		phone: '#',
 		message: '#',
@@ -56,8 +56,8 @@ const baseTeamMembers = [
 	},
 	{
 		id: 3,
-		nameKey: 'Mohamed Khaled',
-		positionKey: 'Software Engineer',
+		name: 'Mohamed Khaled',
+		position: 'Software Engineer',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -65,8 +65,8 @@ const baseTeamMembers = [
 	},
 	{
 		id: 4,
-		nameKey: 'Nada Hassan',
-		positionKey: 'Financial Analyst',
+		name: 'Nada Hassan',
+		position: 'Financial Analyst',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -74,8 +74,8 @@ const baseTeamMembers = [
 	},
 	{
 		id: 5,
-		nameKey: 'Karim Saad',
-		positionKey: 'Sales Director',
+		name: 'Karim Saad',
+		position: 'Sales Director',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -83,8 +83,8 @@ const baseTeamMembers = [
 	},
 	{
 		id: 6,
-		nameKey: 'Farida Adel',
-		positionKey: 'HR Manager',
+		name: 'Farida Adel',
+		position: 'HR Manager',
 		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
 		phone: '#',
 		message: '#',
@@ -116,11 +116,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
 			</div>
 
 			<h3 className='mb-1 font-semibold text-gray-800 text-lg'>
-				{member.name}
+				{i18n._(member.name)}
 			</h3>
 
 			<p className='mb-4 text-gray-500 text-sm uppercase tracking-wide'>
-				{member.position}
+				{i18n._(member.position)}
 			</p>
 
 			<div className='flex space-x-3'>
@@ -160,12 +160,8 @@ const OurTeam: React.FC<OurTeamProps> = ({
 	const { i18n } = useLingui();
 	const isRTL = i18n.locale === 'ar';
 
-	// Create translated team member data
-	const translatedTeamMembers = teamMembers || baseTeamMembers.map(member => ({
-		...member,
-		name: i18n._(member.nameKey),
-		position: i18n._(member.positionKey)
-	}));
+	// Use provided team members or default ones
+	const displayTeamMembers = teamMembers || baseTeamMembers;
 	return (
 		<section className={`bg-gray-50 py-16 ${className}`}>
 			<div className='container mx-auto max-w-7xl px-4'>
@@ -212,7 +208,7 @@ const OurTeam: React.FC<OurTeamProps> = ({
 						// role='region'
 						aria-label='Team members carousel'
 					>
-						{translatedTeamMembers.map((member: TeamMember) => (
+						{displayTeamMembers.map((member: TeamMember) => (
 							<SwiperSlide key={member.id}>
 								<TeamMemberCard member={member} />
 							</SwiperSlide>

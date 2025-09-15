@@ -14,57 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: src/components/Hero.tsx:31
-#: src/components/Hero.tsx:36
-msgid "Backend Developer"
-msgstr "Backend Developer"
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:38
-msgid "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
-msgstr "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:45
-msgid "Frontend Developer"
-msgstr "Frontend Developer"
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:47
-msgid "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
-msgstr "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:54
-msgid "Full Stack Developer"
-msgstr "Full Stack Developer"
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:56
-msgid "Building complete web applications from database design to user interface implementation."
-msgstr "Building complete web applications from database design to user interface implementation."
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:63
-msgid "UI/UX Designer"
-msgstr "UI/UX Designer"
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:65
-msgid "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
-msgstr "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:72
-msgid "DevOps Engineer"
-msgstr "DevOps Engineer"
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:74
-msgid "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
-msgstr "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
-
-#. js-lingui-explicit-id
 #: src/components/Testimonials.tsx:81
 msgid "What our clients are saying"
 msgstr "What our clients are saying"
@@ -120,6 +69,62 @@ msgid "© 2024 . All rights reserved."
 msgstr "© 2024 . All rights reserved."
 
 #. js-lingui-explicit-id
+#: src/components/Hero.tsx:34
+msgid "Backend Developer"
+msgstr "Backend Developer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:36
+msgid "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
+msgstr "Designing and maintaining server-side applications with Node.js, Express, and secure APIs."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:43
+msgid "Frontend Developer"
+msgstr "Frontend Developer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:45
+msgid "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
+msgstr "Creating responsive and interactive user interfaces with React, Next.js, and modern CSS frameworks."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:52
+msgid "Full Stack Developer"
+msgstr "Full Stack Developer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:54
+msgid "Building complete web applications from database design to user interface implementation."
+msgstr "Building complete web applications from database design to user interface implementation."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:61
+msgid "UI/UX Designer"
+msgstr "UI/UX Designer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:63
+msgid "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
+msgstr "Crafting beautiful and intuitive user experiences through research, wireframing, and prototyping."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:70
+msgid "DevOps Engineer"
+msgstr "DevOps Engineer"
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:72
+msgid "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
+msgstr "Streamlining development workflows with CI/CD pipelines, cloud infrastructure, and automation."
+
+#. js-lingui-explicit-id
+#: src/components/Hero.tsx:167
+#: src/components/Hero.tsx:188
+msgid "Read More"
+msgstr "Read More"
+
+#. js-lingui-explicit-id
 #: src/components/Header.tsx:375
 #: src/components/Header.tsx:771
 #: src/components/OurTeam.tsx:175
@@ -130,12 +135,6 @@ msgstr "Our Team"
 #: src/components/OurTeam.tsx:178
 msgid "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
 msgstr "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-
-#. js-lingui-explicit-id
-#: src/components/Hero.tsx:169
-#: src/components/Hero.tsx:190
-msgid "Read More"
-msgstr "Read More"
 
 #. js-lingui-explicit-id
 #: src/components/Header.tsx:201
