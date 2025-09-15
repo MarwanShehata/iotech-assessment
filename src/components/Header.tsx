@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import type React from 'react'
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface Language {
 	code: string
@@ -15,6 +16,10 @@ const Header: React.FC = () => {
 	const [isLanguageOpen, setIsLanguageOpen] = useState<boolean>(false)
 	const [searchQuery, setSearchQuery] = useState<string>('')
 	const [selectedLanguage, setSelectedLanguage] = useState<string>('EN')
+	const [searchResults, setSearchResults] = useState<typeof servicesData>([])
+	const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
+
+	const router = useRouter()
 
 	const searchInputRef = useRef<HTMLInputElement>(null)
 	const servicesRef = useRef<HTMLDivElement>(null)
@@ -60,16 +65,45 @@ const Header: React.FC = () => {
 			setIsSearchOpen(!isSearchOpen)
 		}
 	}
+	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		const query = e.target.value
+		setSearchQuery(query)
+
+		if (query.trim()) {
+			const filteredServices = servicesData.filter((service) =>
+				service.title.toLowerCase().includes(query.toLowerCase()),
+			)
+			setSearchResults(filteredServices)
+			setShowSearchResults(true)
+		} else {
+			setSearchResults([])
+			setShowSearchResults(false)
+		}
+	}
 
 	const handleSearchSubmit = (
 		e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>,
 	): void => {
 		e.preventDefault()
 		if (searchQuery.trim()) {
-			console.log('Searching for:', searchQuery)
+			// If there are search results, navigate to the first one
+			if (searchResults.length > 0) {
+				router.push(`/services/${searchResults[0].slug}`)
+			} else {
+				// Navigate to search results page with query
+				router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
+			}
 			setSearchQuery('')
 			setIsSearchOpen(false)
+			setShowSearchResults(false)
 		}
+	}
+
+	const handleServiceSelect = (slug: string): void => {
+		router.push(`/services/${slug}`)
+		setSearchQuery('')
+		setIsSearchOpen(false)
+		setShowSearchResults(false)
 	}
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -78,18 +112,54 @@ const Header: React.FC = () => {
 		}
 	}
 
-	const servicesItems: string[] = [
-		'Web Development',
-		'Mobile Apps',
-		'Digital Marketing',
-		'UI/UX Design',
-		'Consulting',
-		'Support & Maintenance',
-	]
-
 	const languages: Language[] = [
 		{ code: 'EN', name: 'English' },
 		{ code: 'AR', name: 'العربية' },
+	]
+
+	const servicesData = [
+		{ title: 'General Legal Consultation', slug: 'general-legal-consultation' },
+		{
+			title: 'Legal Consultation Services',
+			slug: 'legal-consultation-services',
+		},
+		{
+			title: 'Establishing National and Foreign Companies',
+			slug: 'establishing-companies',
+		},
+		{ title: 'Arbitration Services', slug: 'arbitration' },
+		{ title: 'Corporate Governance Services', slug: 'corporate-governance' },
+		{ title: 'Notarization Services', slug: 'notarization' },
+		{ title: 'Estate Services', slug: 'estates' },
+		{
+			title: 'Corporate Legal Consultation',
+			slug: 'corporate-legal-consultation',
+		},
+		{ title: 'Defense in All Cases', slug: 'defense-in-all-cases' },
+		{ title: 'Foreign Investment Services', slug: 'foreign-investment' },
+		{ title: 'Commercial Agencies', slug: 'commercial-agencies' },
+		{ title: 'Intellectual Property', slug: 'intellectual-property' },
+		{ title: 'Companies Liquidation', slug: 'companies-liquidation' },
+		{ title: 'Insurance Legal Services', slug: 'insurance' },
+		{
+			title: 'Individual Legal Consultation',
+			slug: 'individual-legal-consultation',
+		},
+		{
+			title: 'Services for Companies and Institutions',
+			slug: 'companies-institutions',
+		},
+		{ title: 'Banks and Financial Institutions', slug: 'banks-financial' },
+		{ title: 'Contracts', slug: 'contracts' },
+		{ title: 'Supporting Vision 2030', slug: 'vision-2030' },
+		{
+			title: 'Corporate Restructuring and Reorganization',
+			slug: 'corporate-restructuring',
+		},
+		{
+			title: 'Internal Regulations for Companies',
+			slug: 'internal-regulations',
+		},
 	]
 
 	return (
@@ -151,19 +221,146 @@ const Header: React.FC = () => {
 							</button>
 
 							{isServicesOpen && (
-								<div className='absolute top-full left-0 z-50 mt-2 w-64 rounded-lg border border-amber-700 bg-amber-800 py-2 shadow-lg'>
-									{' '}
-									{servicesItems.map((item: string, index: number) => (
-										<a
-											key={index}
-											href={`/services/${item
-												.toLowerCase()
-												.replace(/\s+/g, '-')}`}
-											className='block px-4 py-3 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-										>
-											{item}
-										</a>
-									))}
+								<div className='absolute top-full left-0 z-50 mt-2 w-[900px] rounded-lg border border-amber-700 bg-amber-800 p-6 shadow-lg'>
+									<div className='grid grid-cols-3 gap-8'>
+										{/* Column 1 */}
+										<div>
+											<a
+												href='/services/general-legal-consultation'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												General Legal Consultation
+											</a>
+											<a
+												href='/services/legal-consultation-services'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Legal Consultation Services
+											</a>
+											<a
+												href='/services/establishing-companies'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Establishing National and Foreign Companies
+											</a>
+											<a
+												href='/services/arbitration'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Arbitration
+											</a>
+											<a
+												href='/services/corporate-governance'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Corporate Governance Services
+											</a>
+											<a
+												href='/services/notarization'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Notarization
+											</a>
+											<a
+												href='/services/estates'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Estates
+											</a>
+										</div>
+
+										{/* Column 2 */}
+										<div>
+											<a
+												href='/services/corporate-legal-consultation'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Corporate Legal Consultation
+											</a>
+											<a
+												href='/services/defense-in-all-cases'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Defense in All Cases
+											</a>
+											<a
+												href='/services/foreign-investment'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Foreign Investment Services
+											</a>
+											<a
+												href='/services/commercial-agencies'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Commercial Agencies
+											</a>
+											<a
+												href='/services/intellectual-property'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Intellectual Property
+											</a>
+											<a
+												href='/services/companies-liquidation'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Companies Liquidation
+											</a>
+											<a
+												href='/services/insurance'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Insurance
+											</a>
+										</div>
+
+										{/* Column 3 */}
+										<div>
+											<a
+												href='/services/individual-legal-consultation'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Individual Legal Consultation
+											</a>
+											<a
+												href='/services/companies-institutions'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Services for Companies and Institutions
+											</a>
+											<a
+												href='/services/banks-financial'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Banks and Financial Institutions
+											</a>
+											<a
+												href='/services/contracts'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Contracts
+											</a>
+											<a
+												href='/services/vision-2030'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Supporting Vision 2030
+											</a>
+											<a
+												href='/services/corporate-restructuring'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Corporate Restructuring and Reorganization
+											</a>
+											<a
+												href='/services/internal-regulations'
+												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												Internal Regulations for Companies
+											</a>
+										</div>
+									</div>
 								</div>
 							)}
 						</div>
@@ -191,7 +388,7 @@ const Header: React.FC = () => {
 					{/* Right Side Controls */}
 					<div className='flex min-w-0 flex-wrap items-center gap-2 sm:flex-nowrap sm:space-x-4'>
 						{/* Search */}
-						<div className='flex min-w-0 items-center'>
+						<div className='relative flex min-w-0 items-center'>
 							<form
 								onSubmit={handleSearchSubmit}
 								className='relative flex min-w-0 items-center rounded-md focus-within:ring-amber-300 focus:ring-2 focus:ring-amber-300'
@@ -200,24 +397,27 @@ const Header: React.FC = () => {
 									ref={searchInputRef}
 									type='text'
 									value={searchQuery}
-									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-										setSearchQuery(e.target.value)
-									}
+									onChange={handleSearchChange}
 									onKeyDown={handleKeyDown}
-									placeholder='Search...'
+									onFocus={() =>
+										searchQuery.trim() && setShowSearchResults(true)
+									}
+									onBlur={() =>
+										setTimeout(() => setShowSearchResults(false), 200)
+									}
+									placeholder='Search services...'
 									className={`h-10 text-amber-50 text-sm outline-none transition-all duration-300 ease-in-out placeholder:text-amber-200 ${
 										isSearchOpen
-											? 'w-32 rounded-l-md border border-amber-700 border-r-0 bg-amber-800 px-3 sm:w-48' // Responsive width
+											? 'w-32 rounded-l-md border border-amber-700 border-r-0 bg-amber-800 px-3 sm:w-48'
 											: 'w-0 border-none p-0'
 									}`}
 								/>
 								<button
 									type='button'
 									onClick={() => {
-										// Toggles the search input visibility.
-										// If closing, it also clears the search query.
 										if (isSearchOpen) {
 											setSearchQuery('')
+											setShowSearchResults(false)
 										}
 										setIsSearchOpen(!isSearchOpen)
 									}}
@@ -252,6 +452,21 @@ const Header: React.FC = () => {
 										</svg>
 									)}
 								</button>
+								{/* Search Results Dropdown */}
+								{showSearchResults && searchResults.length > 0 && (
+									<div className='absolute top-full left-0 z-50 mt-1 max-h-64 w-full min-w-[300px] overflow-y-auto rounded-md border border-amber-700 bg-amber-800 py-1 shadow-lg'>
+										{searchResults.map((service, index) => (
+											<button
+												key={service.slug}
+												type='button'
+												onClick={() => handleServiceSelect(service.slug)}
+												className='block w-full px-4 py-2 text-left text-amber-50 text-sm transition-colors hover:bg-amber-700 hover:text-amber-100'
+											>
+												{service.title}
+											</button>
+										))}
+									</div>
+								)}
 							</form>
 							{/* End Search */}
 						</div>
@@ -346,7 +561,7 @@ const Header: React.FC = () => {
 			)}
 			{/* Mobile Menu */}
 			<div
-				className={`fixed top-0 right-0 z-50 h-full w-80 transform bg-amber-900 shadow-lg transition-transform duration-300 ease-in-out lg:hidden ${
+				className={`fixed top-0 right-0 z-50 h-full w-80 transform bg-amber-900 shadow-lg transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto ${
 					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}
 			>
@@ -373,11 +588,11 @@ const Header: React.FC = () => {
 				{/* Mobile Logo */}
 				<div className='border-gray-200 border-b p-6'>
 					<Image
-						src='https://readymadeui.com/readymadeui.svg'
+						src='/navbar-logo.png'
 						alt='logo'
-						className='w-32'
-						width={128}
-						height={128}
+						className='w-10'
+						width={40}
+						height={40}
 					/>
 				</div>
 
@@ -389,10 +604,9 @@ const Header: React.FC = () => {
 					>
 						About Us
 					</a>
-
+					{/* Mobile Services */}
 					{/* Mobile Services */}
 					<div className='border-amber-700 border-b'>
-						{' '}
 						<button
 							type='button'
 							onClick={() => setIsServicesOpen(!isServicesOpen)}
@@ -415,18 +629,133 @@ const Header: React.FC = () => {
 							</svg>
 						</button>
 						{isServicesOpen && (
-							<div className='space-y-2 pb-3 pl-4'>
-								{servicesItems.map((item: string, index: number) => (
-									<a
-										key={index}
-										href={`/services/${item
-											.toLowerCase()
-											.replace(/\s+/g, '-')}`}
-										className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-									>
-										{item}
-									</a>
-								))}
+							<div className='max-h-64 overflow-y-auto space-y-1 pb-3 pl-4'>
+								<a
+									href='/services/general-legal-consultation'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									General Legal Consultation
+								</a>
+								<a
+									href='/services/legal-consultation-services'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Legal Consultation Services
+								</a>
+								<a
+									href='/services/establishing-companies'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Establishing National and Foreign Companies
+								</a>
+								<a
+									href='/services/arbitration'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Arbitration
+								</a>
+								<a
+									href='/services/corporate-governance'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Corporate Governance Services
+								</a>
+								<a
+									href='/services/notarization'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Notarization
+								</a>
+								<a
+									href='/services/estates'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Estates
+								</a>
+								<a
+									href='/services/corporate-legal-consultation'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Corporate Legal Consultation
+								</a>
+								<a
+									href='/services/defense-in-all-cases'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Defense in All Cases
+								</a>
+								<a
+									href='/services/foreign-investment'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Foreign Investment Services
+								</a>
+								<a
+									href='/services/commercial-agencies'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Commercial Agencies
+								</a>
+								<a
+									href='/services/intellectual-property'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Intellectual Property
+								</a>
+								<a
+									href='/services/companies-liquidation'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Companies Liquidation
+								</a>
+								<a
+									href='/services/insurance'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Insurance
+								</a>
+								<a
+									href='/services/individual-legal-consultation'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Individual Legal Consultation
+								</a>
+								<a
+									href='/services/companies-institutions'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Services for Companies and Institutions
+								</a>
+								<a
+									href='/services/banks-financial'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Banks and Financial Institutions
+								</a>
+								<a
+									href='/services/contracts'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Contracts
+								</a>
+								<a
+									href='/services/vision-2030'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Supporting Vision 2030
+								</a>
+								<a
+									href='/services/corporate-restructuring'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Corporate Restructuring and Reorganization
+								</a>
+								<a
+									href='/services/internal-regulations'
+									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+								>
+									Internal Regulations for Companies
+								</a>
 							</div>
 						)}
 					</div>

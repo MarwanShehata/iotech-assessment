@@ -2,10 +2,15 @@ import React from 'react'
 import { ChevronLeft } from 'lucide-react'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
+import Head from 'next/head'
 
 const LegalConsultationServices: React.FC = () => {
 	return (
 		<>
+			<Head>
+				<title>About us</title>
+				<meta name='description' content='know more about us' />
+			</Head>
 			<Header />
 
 			<div className='relative min-h-screen overflow-hidden bg-white'>
