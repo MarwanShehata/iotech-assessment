@@ -205,7 +205,7 @@ const Header: React.FC = () => {
 									}
 									onKeyDown={handleKeyDown}
 									placeholder='Search...'
-									className={`h-10 text-amber-50 text-sm outline-none transition-all duration-300 ease-in-out placeholder:text-amber-200${
+									className={`h-10 text-amber-50 text-sm outline-none transition-all duration-300 ease-in-out placeholder:text-amber-200 ${
 										isSearchOpen
 											? 'w-32 rounded-l-md border border-amber-700 border-r-0 bg-amber-800 px-3 sm:w-48' // Responsive width
 											: 'w-0 border-none p-0'
@@ -258,7 +258,7 @@ const Header: React.FC = () => {
 
 						{/* Book Appointment Button */}
 						<button
-							className='hidden rounded-md border-amber-600 border-2 px-4 py-2 font-semibold text-amber-50 text-sm transition-colors hover:bg-amber-700 md:block lg:px-6'
+							className='hidden rounded-md border-2 border-amber-600 px-4 py-2 font-semibold text-amber-50 text-sm transition-colors hover:bg-amber-700 md:block lg:px-6'
 							// className='hidden rounded-md bg-amber-600 px-6 py-2 font-semibold text-sm text-amber-50 transition-colors hover:bg-amber-700 sm:block'
 
 							type='button'
