@@ -3,9 +3,8 @@ import Image from 'next/image'
 import type React from 'react'
 import { useState, useRef, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-
 import { Trans, useLingui } from '@lingui/react'
-import { fetchServices } from '@/lib/strapi'
+import { fetchServices, richTextToPlainText, Service } from '@/lib/strapi'
 
 interface Language {
 	code: string
@@ -22,7 +21,7 @@ const Header: React.FC = () => {
 	const [isLanguageOpen, setIsLanguageOpen] = useState<boolean>(false)
 	const [searchQuery, setSearchQuery] = useState<string>('')
 	const [selectedLanguage, setSelectedLanguage] = useState<string>('EN')
-	const [searchResults, setSearchResults] = useState([])
+	const [searchResults, setSearchResults] = useState<Service[]>([])
 	const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
 
 	const [loading, setLoading] = useState<boolean>(false)
@@ -93,8 +92,12 @@ const Header: React.FC = () => {
 			setLoading(true)
 			try {
 				const services = await fetchServices()
-				const filteredServices = services.filter((service) =>
-					service.title.toLowerCase().includes(query.toLowerCase()),
+				const filteredServices = services.filter(
+					(service) =>
+						service.title.toLowerCase().includes(query.toLowerCase()) ||
+						richTextToPlainText(service.description)
+							.toLowerCase()
+							.includes(query.toLowerCase()),
 				)
 				setSearchResults(filteredServices)
 				setShowSearchResults(true)
@@ -212,145 +215,32 @@ const Header: React.FC = () => {
 										i18n.locale === 'ar' ? 'right-0' : 'left-0'
 									}`}
 								>
-									<div className='grid grid-cols-3 gap-8'>
-										{/* Column 1 */}
-										<div>
-											<a
-												href={`/${i18n.locale || 'en'}/services/general-legal-consultation`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												General Legal Consultation
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/legal-consultation-services`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Legal Consultation Services
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/establishing-companies`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Establishing National and Foreign Companies
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/arbitration`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Arbitration
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/corporate-governance`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Corporate Governance Services
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/notarization`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Notarization
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/estates`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Estates
-											</a>
+									{loading ? (
+										<div className='text-center py-4'>
+											<div className='text-amber-200 text-sm'>
+												Loading services...
+											</div>
 										</div>
-
-										{/* Column 2 */}
-										<div>
-											<a
-												href={`/${i18n.locale || 'en'}/services/corporate-legal-consultation`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Corporate Legal Consultation
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/defense-in-all-cases`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Defense in All Cases
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/foreign-investment`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Foreign Investment Services
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/commercial-agencies`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Commercial Agencies
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/intellectual-property`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Intellectual Property
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/companies-liquidation`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Companies Liquidation
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/insurance`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Insurance
-											</a>
+									) : services.length > 0 ? (
+										<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2'>
+											{services.map((service) => (
+												<a
+													key={service.slug}
+													href={`/${i18n.locale || 'en'}/services/${service.slug}`}
+													className='block rounded px-3 py-2 font-medium text-[14px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
+													onClick={() => setIsServicesOpen(false)}
+												>
+													{service.title}
+												</a>
+											))}
 										</div>
-
-										{/* Column 3 */}
-										<div>
-											<a
-												href={`/${i18n.locale || 'en'}/services/individual-legal-consultation`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Individual Legal Consultation
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/companies-institutions`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Services for Companies and Institutions
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/banks-financial`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Banks and Financial Institutions
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/contracts`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Contracts
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/vision-2030`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Supporting Vision 2030
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/corporate-restructuring`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Corporate Restructuring and Reorganization
-											</a>
-											<a
-												href={`/${i18n.locale || 'en'}/services/internal-regulations`}
-												className='block rounded px-2 py-2 font-medium text-[15px] text-amber-50 transition-colors hover:bg-amber-700 hover:text-amber-100'
-											>
-												Internal Regulations for Companies
-											</a>
+									) : (
+										<div className='text-center py-4'>
+											<div className='text-amber-200 text-sm'>
+												No services available
+											</div>
 										</div>
-									</div>
+									)}
 								</div>
 							)}
 						</div>
@@ -625,132 +515,29 @@ const Header: React.FC = () => {
 						</button>
 						{isServicesOpen && (
 							<div className='max-h-64 space-y-1 overflow-y-auto pb-3 pl-4'>
-								<a
-									href={`/${i18n.locale || 'en'}/services/general-legal-consultation`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									General Legal Consultation
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/legal-consultation-services`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Legal Consultation Services
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/establishing-companies`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Establishing National and Foreign Companies
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/arbitration`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Arbitration
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/corporate-governance`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Corporate Governance Services
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/notarization`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Notarization
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/estates`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Estates
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/corporate-legal-consultation`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Corporate Legal Consultation
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/defense-in-all-cases`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Defense in All Cases
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/foreign-investment`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Foreign Investment Services
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/commercial-agencies`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Commercial Agencies
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/intellectual-property`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Intellectual Property
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/companies-liquidation`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Companies Liquidation
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/insurance`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Insurance
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/individual-legal-consultation`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Individual Legal Consultation
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/companies-institutions`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Services for Companies and Institutions
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/banks-financial`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Banks and Financial Institutions
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/contracts`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Contracts
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/vision-2030`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Supporting Vision 2030
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/corporate-restructuring`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Corporate Restructuring and Reorganization
-								</a>
-								<a
-									href={`/${i18n.locale || 'en'}/services/internal-regulations`}
-									className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
-								>
-									Internal Regulations for Companies
-								</a>
+								{loading ? (
+									<div className='py-2 text-amber-200 text-sm'>
+										Loading services...
+									</div>
+								) : services.length > 0 ? (
+									services.map((service) => (
+										<a
+											key={service.slug}
+											href={`/${i18n.locale || 'en'}/services/${service.slug}`}
+											className='block py-2 text-amber-200 text-sm transition-colors hover:text-amber-100'
+											onClick={() => {
+												setIsServicesOpen(false)
+												setIsMenuOpen(false)
+											}}
+										>
+											{service.title}
+										</a>
+									))
+								) : (
+									<div className='py-2 text-amber-200 text-sm'>
+										No services available
+									</div>
+								)}
 							</div>
 						)}
 					</div>

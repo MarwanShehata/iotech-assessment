@@ -1,10 +1,9 @@
-// app/[locale]/search/page.tsx
 import React from 'react'
 import { ChevronLeft } from 'lucide-react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
-import { fetchServices } from '@/lib/strapi'
+import { fetchServices, richTextToPlainText } from '@/lib/strapi'
 
 interface SearchPageProps {
 	params: {
@@ -23,20 +22,23 @@ const SearchPage: React.FC<SearchPageProps> = async ({
 	const query = searchParams.q || ''
 
 	let searchResults: any[] = []
-	let loading = false
 	let error = null
 
 	if (query) {
 		try {
-			loading = true
 			const services = await fetchServices(locale)
-			searchResults = services.filter((service) =>
-				service.title.toLowerCase().includes(query.toLowerCase()),
-			)
-			loading = false
+			searchResults = services.filter((service) => {
+				const titleMatch = service.title
+					.toLowerCase()
+					.includes(query.toLowerCase())
+				const descriptionMatch = richTextToPlainText(service.description)
+					.toLowerCase()
+					.includes(query.toLowerCase())
+				return titleMatch || descriptionMatch
+			})
 		} catch (err) {
+			console.error('Search error:', err)
 			error = err
-			loading = false
 		}
 	}
 
@@ -54,7 +56,7 @@ const SearchPage: React.FC<SearchPageProps> = async ({
 				/>
 				<div className='relative z-10 px-4 py-6 sm:px-6 sm:py-8 md:px-10 lg:px-20 lg:py-12 xl:px-24'>
 					<Link
-						href='/'
+						href={`/${locale}`}
 						className='mb-6 flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-800 sm:mb-8'
 					>
 						<ChevronLeft className='mr-1 h-4 w-4 sm:h-5 sm:w-5' />
@@ -68,15 +70,12 @@ const SearchPage: React.FC<SearchPageProps> = async ({
 							Showing results for: <strong>"{query}"</strong>
 						</p>
 					)}
-					{loading ? (
-						<div className='text-center py-12'>
-							<p className='text-gray-600 text-lg'>Loading search results...</p>
-						</div>
-					) : error ? (
+					{error ? (
 						<div className='text-center py-12'>
 							<p className='text-red-600 text-lg'>
 								Error loading search results
 							</p>
+							<p className='text-gray-500 mt-2'>Please try again later.</p>
 						</div>
 					) : searchResults.length > 0 ? (
 						<div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
@@ -89,13 +88,10 @@ const SearchPage: React.FC<SearchPageProps> = async ({
 									<h3 className='font-semibold text-gray-900 text-lg group-hover:text-amber-700 transition-colors'>
 										{service.title}
 									</h3>
-									<div
-										className='mt-2 text-gray-600 text-sm line-clamp-2'
-										dangerouslySetInnerHTML={{
-											__html:
-												service.description?.replace(/<[^>]*>/g, '') || '',
-										}}
-									/>
+									<div className='mt-2 text-gray-600 text-sm line-clamp-2'>
+										{richTextToPlainText(service.description).substring(0, 150)}
+										...
+									</div>
 								</Link>
 							))}
 						</div>
