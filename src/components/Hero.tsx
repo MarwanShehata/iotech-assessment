@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
 											{/* Image First on Mobile/Tablet */}
 											<div className='flex items-center justify-center'>
 												<div className='relative overflow-hidden rounded-lg shadow-2xl'>
-													<img
+													<Image
 														src={slide.image}
 														alt={slide.title}
 														className='h-48 w-64 object-cover sm:h-56 sm:w-72 md:h-64 md:w-80'
@@ -157,13 +157,13 @@ const Hero: React.FC = () => {
 
 											{/* Text Content Below Image */}
 											<div className='flex max-w-lg flex-col justify-center text-white'>
-												<h3 className={`mb-4 font-bold text-3xl sm:text-4xl md:text-5xl ${isRTL ? 'text-right' : 'text-center'}`}>
+												<h3 className='mb-4 text-center font-bold text-3xl sm:text-4xl md:text-5xl'>
 													{slide.title}
 												</h3>
-												<p className={`mb-6 text-base leading-relaxed sm:text-lg md:text-xl ${isRTL ? 'text-right' : 'text-center'}`}>
+												<p className='mb-6 text-center text-base leading-relaxed sm:text-lg md:text-xl'>
 													{slide.description}
 												</p>
-												<div className={isRTL ? 'text-right' : 'text-center'}>
+												<div className='text-center'>
 													<a
 														href={slide.readMoreLink}
 														className='inline-block rounded-md bg-white px-6 py-3 font-semibold text-amber-600 transition-all duration-300 focus-within:bg-amber-600 focus-within:text-white hover:bg-amber-600 hover:text-white hover:shadow-lg focus:bg-amber-600 focus:text-white sm:px-8'
@@ -178,10 +178,14 @@ const Hero: React.FC = () => {
 										<div className='hidden grid-cols-1 gap-8 lg:grid lg:grid-cols-2 lg:gap-12'>
 											{/* Text Content - Left Side */}
 											<div className='flex flex-col justify-center text-white'>
-												<h3 className={`mb-6 font-bold text-4xl lg:text-5xl xl:text-6xl ${isRTL ? 'text-right' : 'text-left'}`}>
+												<h3
+													className={`mb-6 font-bold text-4xl lg:text-5xl xl:text-6xl ${isRTL ? 'text-right' : 'text-left'}`}
+												>
 													{slide.title}
 												</h3>
-												<p className={`mb-8 text-lg leading-relaxed lg:text-xl ${isRTL ? 'text-right' : 'text-left'}`}>
+												<p
+													className={`mb-8 text-lg leading-relaxed lg:text-xl ${isRTL ? 'text-right' : 'text-left'}`}
+												>
 													{slide.description}
 												</p>
 												<div className={isRTL ? 'text-right' : 'text-left'}>
@@ -197,7 +201,7 @@ const Hero: React.FC = () => {
 											{/* Image - Right Side */}
 											<div className='flex items-center justify-center lg:justify-end'>
 												<div className='relative overflow-hidden rounded-lg shadow-2xl'>
-													<img
+													<Image
 														src={slide.image}
 														alt={slide.title}
 														className='h-80 w-96 object-cover lg:h-96 lg:w-[420px]'
@@ -259,7 +263,14 @@ const Hero: React.FC = () => {
 						</div>
 
 						{/* Custom Vertical Pagination */}
-						<div className='hero-swiper-pagination -translate-y-1/2 absolute top-3/4 left-2 z-20 flex flex-col gap-1 space-y-2 sm:left-4 sm:space-y-3 md:left-6 lg:left-8' />
+						<div
+							className={`hero-swiper-pagination -translate-y-1/2 /* Pushed up from → more toward top */ absolute top-3/4 z-20 flex flex-col gap-1 space-y-2 sm:space-y-3 ${
+								!isRTL
+									? 'left-2 sm:left-4 md:left-6 lg:left-8'
+									: 'right-2 sm:right-4 md:right-6 lg:right-8'
+							}
+  `}
+						/>
 					</div>
 				</div>
 			</div>

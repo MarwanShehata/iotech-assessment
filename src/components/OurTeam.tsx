@@ -9,12 +9,13 @@ import {
 	MessageCircle,
 	Mail,
 } from 'lucide-react'
-import { Trans, useLingui } from "@lingui/react";
+import { Trans, useLingui } from '@lingui/react'
 
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import Image from 'next/image'
 interface TeamMember {
 	id: number
 	name: string
@@ -34,10 +35,9 @@ interface OurTeamProps {
 	className?: string
 }
 
-
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
-  const { i18n } = useLingui();
-  const isRTL = i18n.locale === 'ar';
+	const { i18n } = useLingui()
+	const isRTL = i18n.locale === 'ar'
 	const handleContactClick = (
 		e: React.MouseEvent<HTMLAnchorElement>,
 		url: string,
@@ -50,7 +50,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
 	return (
 		<div className='flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-sm'>
 			<div className='relative mb-4'>
-				<img
+				<Image
 					src={member.image}
 					alt={`${member.name} - ${member.position}`}
 					className='h-48 w-48 rounded-lg object-cover sm:h-56 sm:w-56 lg:h-64 lg:w-64'
@@ -96,12 +96,9 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
 	)
 }
 
-const OurTeam: React.FC<OurTeamProps> = ({
-	teamMembers,
-	className = '',
-}) => {
-	const { i18n } = useLingui();
-	const isRTL = i18n.locale === 'ar';
+const OurTeam: React.FC<OurTeamProps> = ({ teamMembers, className = '' }) => {
+	const { i18n } = useLingui()
+	const isRTL = i18n.locale === 'ar'
 
 	// Create translated team members array like Hero does
 	const translatedTeamMembers: TeamMember[] = teamMembers || [
@@ -159,14 +156,14 @@ const OurTeam: React.FC<OurTeamProps> = ({
 			message: '#',
 			email: '#',
 		},
-	];
+	]
 	return (
 		<section className={`bg-gray-50 py-16 ${className}`}>
 			<div className='container mx-auto max-w-7xl px-4'>
 				{/* Header */}
 				<div className='mb-12 text-center'>
 					<h2 className='mb-4 font-serif text-3xl text-amber-900 md:text-4xl lg:text-5xl'>
-						<Trans id="Our Team" />
+						<Trans id='Our Team' />
 					</h2>
 					<p className='mx-auto max-w-2xl text-gray-600 text-sm leading-relaxed md:text-base'>
 						<Trans id="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" />
