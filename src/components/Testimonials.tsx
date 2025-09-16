@@ -6,7 +6,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { Trans, useLingui } from "@lingui/react";
+import { Trans, useLingui } from '@lingui/react'
 
 interface Testimonial {
 	id: number
@@ -17,63 +17,72 @@ interface Testimonial {
 	image: string
 }
 
-
 const TestimonialSlider: React.FC = () => {
-  const { i18n } = useLingui();
-  const isRTL = i18n.locale === 'ar';
-  
-  // Create translated testimonials array like Hero does
-  const testimonials: Testimonial[] = [
-    {
-      id: 1,
-      name: i18n._('Mohammed Saif'),
-      position: i18n._('CEO'),
-      company: i18n._('Company'),
-      quote: i18n._('With the help of the hospitable staff of AI Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered.'),
-      image: 'https://ph.loremipsums.org/300x400/CCCCCC/333333/webp',
-    },
-    {
-      id: 2,
-      name: i18n._('Sarah Chen'),
-      position: i18n._('Investment Director'),
-      company: i18n._('Global Ventures Ltd'),
-      quote: i18n._('AI Safar and Partners provided exceptional service throughout our investment process. Their expertise in international markets and attention to detail made all the difference. I highly recommend their professional services to any serious investor.'),
-      image: 'https://ph.loremipsums.org/300x400/77767B/333333/webp',
-    },
-    {
-      id: 3,
-      name: i18n._('David Rodriguez'),
-      position: i18n._('CFO'),
-      company: i18n._('Fortune Tech Solutions'),
-      quote: i18n._('Working with AI Safar and Partners has been a game-changer for our company. Their strategic insights and personalized approach helped us navigate complex financial decisions with confidence. Outstanding results every time.'),
-      image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
-    },
-    {
-      id: 4,
-      name: i18n._('Emily Johnson'),
-      position: i18n._('Portfolio Manager'),
-      company: i18n._('Sunrise Capital'),
-      quote: i18n._("The team at AI Safar and Partners combines deep market knowledge with genuine care for their clients. They've consistently delivered results that exceed our expectations and have become our trusted financial partners."),
-      image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
-    },
-    {
-      id: 5,
-      name: i18n._('Ahmed Hassan'),
-      position: i18n._('Managing Director'),
-      company: i18n._('International Holdings'),
-      quote: i18n._("From individual investments to large-scale corporate solutions, AI Safar and Partners has proven time and again why they're the best in the business. Their professionalism and results speak for themselves."),
-      image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
-    },
-  ];
+	const { i18n } = useLingui()
+	const isRTL = i18n.locale === 'ar'
+
+	// Create translated testimonials array like Hero does
+	const testimonials: Testimonial[] = [
+		{
+			id: 1,
+			name: i18n._('Mohammed Saif'),
+			position: i18n._('CEO'),
+			company: i18n._('Company'),
+			quote: i18n._(
+				'With the help of the hospitable staff of AI Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered.',
+			),
+			image: 'https://ph.loremipsums.org/300x400/CCCCCC/333333/webp',
+		},
+		{
+			id: 2,
+			name: i18n._('Sarah Chen'),
+			position: i18n._('Investment Director'),
+			company: i18n._('Global Ventures Ltd'),
+			quote: i18n._(
+				'AI Safar and Partners provided exceptional service throughout our investment process. Their expertise in international markets and attention to detail made all the difference. I highly recommend their professional services to any serious investor.',
+			),
+			image: 'https://ph.loremipsums.org/300x400/77767B/333333/webp',
+		},
+		{
+			id: 3,
+			name: i18n._('David Rodriguez'),
+			position: i18n._('CFO'),
+			company: i18n._('Fortune Tech Solutions'),
+			quote: i18n._(
+				'Working with AI Safar and Partners has been a game-changer for our company. Their strategic insights and personalized approach helped us navigate complex financial decisions with confidence. Outstanding results every time.',
+			),
+			image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
+		},
+		{
+			id: 4,
+			name: i18n._('Emily Johnson'),
+			position: i18n._('Portfolio Manager'),
+			company: i18n._('Sunrise Capital'),
+			quote: i18n._(
+				"The team at AI Safar and Partners combines deep market knowledge with genuine care for their clients. They've consistently delivered results that exceed our expectations and have become our trusted financial partners.",
+			),
+			image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
+		},
+		{
+			id: 5,
+			name: i18n._('Ahmed Hassan'),
+			position: i18n._('Managing Director'),
+			company: i18n._('International Holdings'),
+			quote: i18n._(
+				"From individual investments to large-scale corporate solutions, AI Safar and Partners has proven time and again why they're the best in the business. Their professionalism and results speak for themselves.",
+			),
+			image: 'https://ph.loremipsums.org/300x400/DEDDDA/000000/webp',
+		},
+	]
 	return (
 		<div className='min-h-fit w-full bg-gradient-to-br from-amber-900 to-amber-800 px-8 py-16'>
 			{/* Header Section */}
 			<div className='mx-auto mb-12 max-w-6xl'>
 				<h1 className='mb-6 font-bold text-4xl text-white md:text-5xl'>
-					<Trans id="What our clients are saying" />
+					<Trans id='What our clients are saying' />
 				</h1>
 				<p className='text-amber-100 text-lg leading-relaxed md:text-xl'>
-					<Trans id="Our clients range from individual investors, to local, international as well as fortune 500 companies. Bla Bla Bla Blaaa" />
+					<Trans id='Our clients range from individual investors, to local, international as well as fortune 500 companies. Bla Bla Bla Blaaa' />
 				</p>
 			</div>
 
@@ -109,7 +118,7 @@ const TestimonialSlider: React.FC = () => {
 										<img
 											src={testimonial.image}
 											alt={`${testimonial.name} - ${testimonial.position} at ${testimonial.company}`}
-											className='h-full w-full object-cover'
+											className='object-cover h-full w-full'
 											loading='lazy'
 										/>
 									</div>
@@ -142,7 +151,7 @@ const TestimonialSlider: React.FC = () => {
 						className='swiper-button-prev-custom group flex h-14 w-14 items-center justify-center rounded-full bg-amber-700 transition-colors duration-300 hover:bg-amber-600'
 					>
 						<svg
-							className='h-6 w-6 transform text-white transition-transform duration-200 group-hover:scale-110'
+							className='h-6 w-6 rotate-y-180 transform text-white transition-transform duration-200 group-hover:scale-110'
 							fill='none'
 							stroke='currentColor'
 							viewBox='0 0 24 24'
@@ -161,7 +170,7 @@ const TestimonialSlider: React.FC = () => {
 						className='swiper-button-next-custom group flex h-14 w-14 items-center justify-center rounded-full bg-white transition-colors duration-300 hover:bg-gray-100'
 					>
 						<svg
-							className='h-6 w-6 transform text-amber-800 transition-transform duration-200 group-hover:scale-110'
+							className='h-6 w-6 rotate-y-180 transform text-amber-800 transition-transform duration-200 group-hover:scale-110'
 							fill='none'
 							stroke='currentColor'
 							viewBox='0 0 24 24'
