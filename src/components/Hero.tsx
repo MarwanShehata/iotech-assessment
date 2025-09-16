@@ -137,7 +137,7 @@ const Hero: React.FC = () => {
 							className='hero-swiper'
 						>
 							{slides.map((slide) => (
-								<SwiperSlide key={slide.id}>
+								<SwiperSlide dir={isRTL ? 'rtl' : 'ltr'} key={slide.id}>
 									<div className='flex min-h-[400px] items-center justify-center py-8 sm:py-12'>
 										{/* Mobile and Tablet Layout (Stacked) */}
 										<div className='flex flex-col items-center space-y-6 text-center lg:hidden'>
@@ -157,13 +157,13 @@ const Hero: React.FC = () => {
 
 											{/* Text Content Below Image */}
 											<div className='flex max-w-lg flex-col justify-center text-white'>
-												<h3 className='mb-4 font-bold text-3xl sm:text-4xl md:text-5xl'>
+												<h3 className={`mb-4 font-bold text-3xl sm:text-4xl md:text-5xl ${isRTL ? 'text-right' : 'text-center'}`}>
 													{slide.title}
 												</h3>
-												<p className='mb-6 text-base leading-relaxed sm:text-lg md:text-xl'>
+												<p className={`mb-6 text-base leading-relaxed sm:text-lg md:text-xl ${isRTL ? 'text-right' : 'text-center'}`}>
 													{slide.description}
 												</p>
-												<div>
+												<div className={isRTL ? 'text-right' : 'text-center'}>
 													<a
 														href={slide.readMoreLink}
 														className='inline-block rounded-md bg-white px-6 py-3 font-semibold text-amber-600 transition-all duration-300 focus-within:bg-amber-600 focus-within:text-white hover:bg-amber-600 hover:text-white hover:shadow-lg focus:bg-amber-600 focus:text-white sm:px-8'
@@ -178,13 +178,13 @@ const Hero: React.FC = () => {
 										<div className='hidden grid-cols-1 gap-8 lg:grid lg:grid-cols-2 lg:gap-12'>
 											{/* Text Content - Left Side */}
 											<div className='flex flex-col justify-center text-white'>
-												<h3 className='mb-6 text-left font-bold text-4xl lg:text-5xl xl:text-6xl'>
+												<h3 className={`mb-6 font-bold text-4xl lg:text-5xl xl:text-6xl ${isRTL ? 'text-right' : 'text-left'}`}>
 													{slide.title}
 												</h3>
-												<p className='mb-8 text-left text-lg leading-relaxed lg:text-xl'>
+												<p className={`mb-8 text-lg leading-relaxed lg:text-xl ${isRTL ? 'text-right' : 'text-left'}`}>
 													{slide.description}
 												</p>
-												<div className='text-left'>
+												<div className={isRTL ? 'text-right' : 'text-left'}>
 													<a
 														href={slide.readMoreLink}
 														className='inline-block rounded-md bg-white px-8 py-3 font-semibold text-amber-600 transition-all duration-300 focus-within:bg-amber-600 focus-within:text-white hover:bg-amber-600 hover:text-white hover:shadow-lg focus:bg-amber-600 focus:text-white'
@@ -224,7 +224,7 @@ const Hero: React.FC = () => {
 								fill='none'
 								xmlns='http://www.w3.org/2000/svg'
 								className={isRTL ? 'scale-x-[-1]' : ''}
-                role='graphics-symbol img'
+								role='graphics-symbol img'
 							>
 								<path
 									d='M15 18L9 12L15 6'
@@ -246,7 +246,7 @@ const Hero: React.FC = () => {
 								fill='none'
 								xmlns='http://www.w3.org/2000/svg'
 								className={isRTL ? 'scale-x-[-1]' : ''}
-                role='graphics-symbol img'
+								role='graphics-symbol img'
 							>
 								<path
 									d='M9 18L15 12L9 6'

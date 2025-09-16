@@ -125,16 +125,16 @@ const TestimonialSlider: React.FC = () => {
 								</div>
 
 								{/* Testimonial Content */}
-								<div className='flex-1 text-center lg:text-left'>
-									<blockquote className='mb-8 font-light text-white text-xl leading-relaxed md:text-2xl'>
+								<div className={`flex-1 text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
+									<blockquote className={`mb-8 font-light text-white text-xl leading-relaxed md:text-2xl ${isRTL ? 'text-right' : 'text-center lg:text-left'}`}>
 										"{testimonial.quote}"
 									</blockquote>
 
 									<div className='text-amber-100'>
-										<h3 className='mb-2 font-bold text-2xl md:text-3xl'>
+										<h3 className={`mb-2 font-bold text-2xl md:text-3xl ${isRTL ? 'text-right' : 'text-center lg:text-left'}`}>
 											{testimonial.name}
 										</h3>
-										<p className='text-lg md:text-xl'>
+										<p className={`text-lg md:text-xl ${isRTL ? 'text-right' : 'text-center lg:text-left'}`}>
 											{testimonial.position}/{testimonial.company}
 										</p>
 									</div>
@@ -151,7 +151,7 @@ const TestimonialSlider: React.FC = () => {
 						className='swiper-button-prev-custom group flex h-14 w-14 items-center justify-center rounded-full bg-amber-700 transition-colors duration-300 hover:bg-amber-600'
 					>
 						<svg
-							className='h-6 w-6 rotate-y-180 transform text-white transition-transform duration-200 group-hover:scale-110'
+							className='h-6 w-6 transform text-white transition-transform duration-200 group-hover:scale-110'
 							fill='none'
 							stroke='currentColor'
 							viewBox='0 0 24 24'
@@ -170,7 +170,7 @@ const TestimonialSlider: React.FC = () => {
 						className='swiper-button-next-custom group flex h-14 w-14 items-center justify-center rounded-full bg-white transition-colors duration-300 hover:bg-gray-100'
 					>
 						<svg
-							className='h-6 w-6 rotate-y-180 transform text-amber-800 transition-transform duration-200 group-hover:scale-110'
+							className='h-6 w-6 transform text-amber-800 transition-transform duration-200 group-hover:scale-110'
 							fill='none'
 							stroke='currentColor'
 							viewBox='0 0 24 24'
