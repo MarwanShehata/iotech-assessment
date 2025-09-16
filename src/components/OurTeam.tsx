@@ -55,6 +55,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
 					alt={`${member.name} - ${member.position}`}
 					className='h-48 w-48 rounded-lg object-cover sm:h-56 sm:w-56 lg:h-64 lg:w-64'
 					loading='lazy'
+					width={300}
+					height={300}
 				/>
 			</div>
 

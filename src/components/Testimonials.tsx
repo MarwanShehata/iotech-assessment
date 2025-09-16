@@ -121,6 +121,8 @@ const TestimonialSlider: React.FC = () => {
 											alt={`${testimonial.name} - ${testimonial.position} at ${testimonial.company}`}
 											className='object-cover h-full w-full'
 											loading='lazy'
+											width={300}
+											height={400}
 										/>
 									</div>
 								</div>
