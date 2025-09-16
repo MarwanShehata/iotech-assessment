@@ -34,63 +34,6 @@ interface OurTeamProps {
 	className?: string
 }
 
-// Define base team data structure
-const baseTeamMembers = [
-	{
-		id: 1,
-		name: 'Ahmed Taha',
-		position: 'Senior Project Manager',
-		image: 'https://ph.loremipsums.org/300/CCCCCC/333333/webp',
-		phone: '#',
-		message: '#',
-		email: '#',
-	},
-	{
-		id: 2,
-		name: 'Yasmine Abdelaziz',
-		position: 'Marketing Specialist',
-		image: 'https://ph.loremipsums.org/300/77767B/333333/webp',
-		phone: '#',
-		message: '#',
-		email: '#',
-	},
-	{
-		id: 3,
-		name: 'Mohamed Khaled',
-		position: 'Software Engineer',
-		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
-		phone: '#',
-		message: '#',
-		email: '#',
-	},
-	{
-		id: 4,
-		name: 'Nada Hassan',
-		position: 'Financial Analyst',
-		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
-		phone: '#',
-		message: '#',
-		email: '#',
-	},
-	{
-		id: 5,
-		name: 'Karim Saad',
-		position: 'Sales Director',
-		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
-		phone: '#',
-		message: '#',
-		email: '#',
-	},
-	{
-		id: 6,
-		name: 'Farida Adel',
-		position: 'HR Manager',
-		image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
-		phone: '#',
-		message: '#',
-		email: '#',
-	},
-]
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   const { i18n } = useLingui();
@@ -116,11 +59,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
 			</div>
 
 			<h3 className='mb-1 font-semibold text-gray-800 text-lg'>
-				{i18n._(member.name)}
+				{member.name}
 			</h3>
 
 			<p className='mb-4 text-gray-500 text-sm uppercase tracking-wide'>
-				{i18n._(member.position)}
+				{member.position}
 			</p>
 
 			<div className='flex space-x-3'>
@@ -160,8 +103,63 @@ const OurTeam: React.FC<OurTeamProps> = ({
 	const { i18n } = useLingui();
 	const isRTL = i18n.locale === 'ar';
 
-	// Use provided team members or default ones
-	const displayTeamMembers = teamMembers || baseTeamMembers;
+	// Create translated team members array like Hero does
+	const translatedTeamMembers: TeamMember[] = teamMembers || [
+		{
+			id: 1,
+			name: i18n._('Ahmed Taha'),
+			position: i18n._('Senior Project Manager'),
+			image: 'https://ph.loremipsums.org/300/CCCCCC/333333/webp',
+			phone: '#',
+			message: '#',
+			email: '#',
+		},
+		{
+			id: 2,
+			name: i18n._('Yasmine Abdelaziz'),
+			position: i18n._('Marketing Specialist'),
+			image: 'https://ph.loremipsums.org/300/77767B/333333/webp',
+			phone: '#',
+			message: '#',
+			email: '#',
+		},
+		{
+			id: 3,
+			name: i18n._('Mohamed Khaled'),
+			position: i18n._('Software Engineer'),
+			image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
+			phone: '#',
+			message: '#',
+			email: '#',
+		},
+		{
+			id: 4,
+			name: i18n._('Nada Hassan'),
+			position: i18n._('Financial Analyst'),
+			image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
+			phone: '#',
+			message: '#',
+			email: '#',
+		},
+		{
+			id: 5,
+			name: i18n._('Karim Saad'),
+			position: i18n._('Sales Director'),
+			image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
+			phone: '#',
+			message: '#',
+			email: '#',
+		},
+		{
+			id: 6,
+			name: i18n._('Farida Adel'),
+			position: i18n._('HR Manager'),
+			image: 'https://ph.loremipsums.org/300/DEDDDA/000000/webp',
+			phone: '#',
+			message: '#',
+			email: '#',
+		},
+	];
 	return (
 		<section className={`bg-gray-50 py-16 ${className}`}>
 			<div className='container mx-auto max-w-7xl px-4'>
@@ -208,7 +206,7 @@ const OurTeam: React.FC<OurTeamProps> = ({
 						// role='region'
 						aria-label='Team members carousel'
 					>
-						{displayTeamMembers.map((member: TeamMember) => (
+						{translatedTeamMembers.map((member: TeamMember) => (
 							<SwiperSlide key={member.id}>
 								<TeamMemberCard member={member} />
 							</SwiperSlide>
