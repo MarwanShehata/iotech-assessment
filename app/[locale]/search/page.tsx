@@ -6,21 +6,21 @@ import Link from 'next/link'
 import { fetchServices, richTextToPlainText } from '@/lib/strapi'
 
 interface SearchPageProps {
-	params: {
+	params: Promise<{
 		locale: string
-	}
-	searchParams: {
+	}>
+	searchParams: Promise<{
 		q?: string
-	}
+	}>
 }
 
 const SearchPage: React.FC<SearchPageProps> = async ({
 	params,
 	searchParams,
 }) => {
-	const { locale } = params
-	const query = searchParams.q || ''
-
+	const { locale } = await params
+	const { q: query = '' } = await searchParams
+	
 	let searchResults: any[] = []
 	let error = null
 
