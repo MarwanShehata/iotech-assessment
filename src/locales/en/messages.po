@@ -170,3 +170,9 @@ msgstr "Search services..."
 #: src/components/Header.tsx:791
 msgid "Book Appointment"
 msgstr "Book Appointment"
+
+msgid "Well, this is awkward. The page you're looking for has vanished."
+msgstr "Well, this is awkward. The page you're looking for has vanished."
+
+msgid "Go Home"
+msgstr "Go Home"

@@ -298,3 +298,9 @@ msgstr "يجمع فريق AI Safar and Partners بين المعرفة العمي
 #. js-lingui-explicit-id
 msgid "From individual investments to large-scale corporate solutions, AI Safar and Partners has proven time and again why they're the best in the business. Their professionalism and results speak for themselves."
 msgstr "من الاستثمارات الفردية إلى الحلول المؤسسية واسعة النطاق، أثبتت AI Safar and Partners مراراً وتكراراً لماذا هم الأفضل في هذا المجال. احترافيتهم ونتائجهم تتحدث عن نفسها."
+
+msgid "Well, this is awkward. The page you're looking for has vanished."
+msgstr "عفوًا، هذه الصفحة غير متوفرة. لقد اختفت الصفحة التي تبحث عنها."
+
+msgid "Go Home"
+msgstr "العودة إلى الصفحة الرئيسية"
